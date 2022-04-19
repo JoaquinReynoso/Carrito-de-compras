@@ -7,6 +7,24 @@ let inputButton = document.getElementById ("boton");
 let formulario = document.getElementById("form");
 
 
+const contenido = document.querySelector('#listaUsuarios')
+
+
+
+let tipo= 1
+
+async function traer() {
+     await fetch('https://pokeapi.co/api/v2/pokemon/')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data.results[tipo])
+        contenido.innerHTML = `
+        <p>Nombre del cupon de regalo para futuras compras: ${data.results[tipo].name}</p>
+        `
+    })
+}
+
+
 formulario.addEventListener("submit", (e) => {
 
     console.log("Enviando formulario");
@@ -29,6 +47,8 @@ inputButton.addEventListener("click", () => {
     }).then( (resultado) => {
       console.log(resultado);
       window.location.href = "./index.html";
+
+      
       
     
  }) 
